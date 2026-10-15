@@ -23,7 +23,7 @@ PID 1 debe ser `systemd`. Si no lo es, conserva las opciones existentes de `/etc
 ```bash
 mkdir -p ~/projects
 cd ~/projects
-git clone <URL_DEL_REPOSITORIO> radio-ai
+git clone https://github.com/Igortxete7/radio-ai.git radio-ai
 cd radio-ai
 bash scripts/bootstrap-wsl.sh
 npm ci
