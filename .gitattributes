@@ -2,4 +2,4 @@
 *.sh text eol=lf
 *.liq text eol=lf
 *.mp3 binary
-prisma/migrations/** whitespace=-blank-at-eof
+prisma/migrations/** -text whitespace=cr-at-eol,-blank-at-eof
