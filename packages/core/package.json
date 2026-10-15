@@ -1,0 +1,16 @@
+{
+  "name": "@radio/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@radio/config": "*",
+    "@radio/shared": "*",
+    "@radio/db": "*",
+    "@radio/integrations": "*",
+    "luxon": "^3.7.2",
+    "music-metadata": "^11.0.0",
+    "zod": "^4.1.0"
+  }
+}

@@ -1,0 +1,24 @@
+[Unit]
+Description=Radio AI continuous audio engine
+After=network.target icecast2.service
+Wants=icecast2.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=radio
+Group=radio
+WorkingDirectory=@APP_DIR@
+EnvironmentFile=/etc/radio-ai/radio.env
+Environment=RADIO_ENV_FILE=/etc/radio-ai/radio.env
+ExecStart=/usr/bin/bash "@APP_DIR@/radio/liquidsoap/run.sh"
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+[Unit]
+Description=Radio AI administration panel
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=radio
+Group=radio
+WorkingDirectory=@APP_DIR@
+EnvironmentFile=/etc/radio-ai/radio.env
+Environment=NODE_ENV=production
+ExecStart="@NPM_BIN@" run start -w @radio/web -- --hostname 127.0.0.1
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

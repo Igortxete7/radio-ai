@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+model Track {
+  id String @id @default(cuid())
+  path String @unique
+  title String
+  artist String
+  album String?
+  genre String?
+  durationSec Float
+  bpm Float?
+  enabled Boolean @default(true)
+  missing Boolean @default(false)
+  contentHash String?
+  fileSize Int?
+  mtimeMs Float?
+  metadataEdited Boolean @default(false)
+  lastPlayedAt DateTime?
+  playCount Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Jingle {
+  id String @id @default(cuid())
+  path String @unique
+  name String
+  category String @default("ident")
+  durationSec Float
+  enabled Boolean @default(true)
+}
+model PlayEvent {
+  id String @id @default(cuid())
+  externalId String? @unique
+  type String
+  assetId String?
+  queueItemId String?
+  title String
+  artist String?
+  path String?
+  startedAt DateTime
+  endedAt DateTime?
+  status String @default("PLAYING")
+  @@index([startedAt])
+}
+model QueueItem {
+  id String @id @default(cuid())
+  type String
+  assetId String?
+  path String
+  title String
+  artist String?
+  priority Int @default(0)
+  state String @default("PENDING")
+  scheduledFor DateTime?
+  dedupeKey String @unique
+  queueRequestId String?
+  errorCode String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model AiBreak {
+  id String @id @default(cuid())
+  kind String
+  scheduledFor DateTime
+  script String?
+  audioPath String?
+  durationSec Float?
+  status String @default("PLANNED")
+  contextJson Json?
+  dedupeKey String @unique
+  queueRequestId String?
+  errorCode String?
+  retryable Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model NewsItem {
+  id String @id
+  source String
+  title String
+  url String
+  publishedAt DateTime
+  summary String?
+  fingerprint String @unique
+  priority Int @default(0)
+  category String @default("general")
+}
+model WeatherSnapshot {
+  id String @id @default(cuid())
+  location String
+  observedAt DateTime
+  payloadJson Json
+  createdAt DateTime @default(now())
+}
+model RadioSetting {
+  key String @id
+  valueJson Json
+  updatedAt DateTime @updatedAt
+}
+model JobRun {
+  id String @id @default(cuid())
+  jobName String
+  dedupeKey String @unique
+  scheduledFor DateTime
+  startedAt DateTime @default(now())
+  endedAt DateTime?
+  status String @default("RUNNING")
+  error String?
+}
+model SystemEvent {
+  id String @id @default(cuid())
+  timestamp DateTime @default(now())
+  level String
+  service String
+  event String
+  correlationId String?
+  durationMs Float?
+  errorCode String?
+  detailJson Json?
+  @@index([timestamp])
+}

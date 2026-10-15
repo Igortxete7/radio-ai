@@ -1,0 +1,52 @@
+{
+  "name": "radio-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n web,worker \"npm run dev -w @radio/web\" \"npm run dev -w @radio/worker\"",
+    "build": "npm run db:generate && npm run build -w @radio/web",
+    "start": "npm run start -w @radio/web",
+    "worker": "npm run start -w @radio/worker",
+    "worker:start": "npm run start -w @radio/worker",
+    "web:start": "npm run start -w @radio/web",
+    "radio:start": "bash radio/liquidsoap/run.sh",
+    "db:generate": "prisma generate",
+    "env:init": "tsx scripts/init-env.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "library:scan": "tsx scripts/scan-library.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit && npm run typecheck -w @radio/web",
+    "radio:check": "bash scripts/radio-check.sh",
+    "smoke": "bash scripts/smoke-stream.sh"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.56.0",
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.39.0",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "prisma": "6.19.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "vitest": "^4.0.0"
+  }
+}

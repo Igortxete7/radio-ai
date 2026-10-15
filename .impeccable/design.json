@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T11:45:00Z",
+  "title": "Design System: Radio AI",
+  "extensions": {
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "Verde de operación" },
+      "canvas": { "role": "neutral", "displayName": "Fondo claro" },
+      "ink": { "role": "neutral", "displayName": "Texto principal" }
+    },
+    "shadows": [
+      {
+        "name": "confirmation",
+        "value": "0 12px 44px rgba(15,27,20,.2)",
+        "purpose": "Separar una confirmación de la emisión en curso"
+      }
+    ],
+    "motion": [
+      {
+        "name": "loading",
+        "value": "spin 1s linear infinite",
+        "purpose": "Indicar una operación pendiente; se desactiva con reduced-motion"
+      }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "1050px" },
+      { "name": "mobile", "value": "780px" }
+    ]
+  },
+  "components": [],
+  "narrative": {
+    "northStar": "Control de emisión",
+    "overview": "Una interfaz de operación centrada en audio, estados reales y acciones contextualizadas. La especificación fija una superficie clara, Geist y navegación discreta.",
+    "keyCharacteristics": [
+      "Jerarquía operativa",
+      "Tablas y timelines",
+      "Estados degradados explícitos"
+    ],
+    "rules": [],
+    "dos": [
+      "Mantener estados observados y controles accesibles",
+      "Preservar confirmación antes de saltar audio"
+    ],
+    "donts": ["Inventar oyentes o métricas", "Añadir autoplay o gráficos decorativos"]
+  }
+}

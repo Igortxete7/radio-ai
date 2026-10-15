@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.liq text eol=lf
+*.mp3 binary
+prisma/migrations/** whitespace=-blank-at-eof

@@ -1,0 +1,12 @@
+{
+  "name": "@radio/config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@radio/shared": "*",
+    "dotenv": "^17.2.0",
+    "zod": "^4.1.0"
+  }
+}
